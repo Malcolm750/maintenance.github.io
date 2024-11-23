@@ -128,6 +128,7 @@
 	    };
 	
 	    try {
+		console.log('Données envoyées:', formData); // Debug
 	        const response = await fetch('https://maintenance-github-io.onrender.com/api/inscription', {
 	            method: 'POST',
 	            headers: {
@@ -141,7 +142,8 @@
 	        // Vérifier si la réponse est du JSON
 	        const contentType = response.headers.get('content-type');
 	        if (contentType && contentType.includes('application/json')) {
-	            const data = await response.json();
+		const data = await response.json();
+			console.log('Réponse reçue:', data); // Debug
 	            if (response.ok) {
 	                window.location.href = 'confirmation.html';
 	            } else {
