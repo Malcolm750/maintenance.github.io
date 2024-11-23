@@ -55,16 +55,37 @@ def get_stats():
 @app.route('/api/inscription', methods=['POST'])
 def submit_inscription():
     try:
+
+        # Log des données reçues
+        print("Données reçues:", request.json)
+        
         data = request.json
         headers = {
             'xc-auth': NOCODB_TOKEN,
             'Content-Type': 'application/json'
         }
+
+         # Log des variables d'environnement (attention aux données sensibles)
+        print("API URL:", NOCODB_API_URL)
+        print("Table ID:", NOCODB_TABLE_ID)
+
+        url = f"{NOCODB_API_URL}/api/v2/tables/{NOCODB_TABLE_ID}/records"
+         print("URL complète:", url)
+
+        # Log des données envoyées
+        print("Headers:", headers)
+        print("Données à envoyer:", data)
+        
         response = requests.post(
-            f"{NOCODB_API_URL}/api/v2/tables/{NOCODB_TABLE_ID}/records",
+            url,
             headers=headers,
             json=data
         )
+        
+        # Log de la réponse
+        print("Status code:", response.status_code)
+        print("Réponse:", response.text)
+        
             if response.ok:
                 return jsonify({"success": True})
             else:
