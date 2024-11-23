@@ -9,7 +9,13 @@ app = Flask(__name__,
 )
 
 # Activation de CORS pour permettre les requêtes cross-origin
-CORS(app)
+CORS(app, resources={
+    r"/api/*": {
+        "origins": ["https://malcolm750.github.io"],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"]
+    }
+})
 
 # Configuration NocoDB
 NOCODB_API_URL = os.environ.get('NOCODB_API_URL')
