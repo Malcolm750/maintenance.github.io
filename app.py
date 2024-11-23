@@ -13,7 +13,8 @@ CORS(app, resources={
     r"/api/*": {
         "origins": ["https://malcolm750.github.io"],
         "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"]
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True
     }
 })
 
