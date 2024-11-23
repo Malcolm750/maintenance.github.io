@@ -111,43 +111,49 @@
 	});
 
 	async function submitForm(event) {
-		event.preventDefault();
-		
-		if (!validateForm()) {
-			alert('Veuillez remplir tous les champs obligatoires');
-			return;
-		}
-		
-		const formData = {
-			Projet: document.getElementById('projet').value,
-			Nom: document.getElementById('nom').value,
-			Prenom: document.getElementById('prenom').value,
-			Email: document.getElementById('email').value + '@aphp.fr',
-			Site: document.getElementById('site').value,
-			Service: document.getElementById('service').value
-		};
-
-		try {
-			const response = await fetch('/api/inscription', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(formData)
-			});
-
-			const data = await response.json();
-
-			if (response.ok) {
-				window.location.href = 'confirmation.html';
-			} else {
-				console.error('Erreur détaillée:', data);
-				alert('Erreur: ' + (data.message || 'Une erreur est survenue lors de l\'inscription'));
-			}
-		} catch (error) {
-			console.error('Erreur complète:', error);
-			alert('Erreur de connexion: ' + error.message);
-		}
+	    event.preventDefault();
+	    
+	    if (!validateForm()) {
+	        alert('Veuillez remplir tous les champs obligatoires');
+	        return;
+	    }
+	    
+	    const formData = {
+	        Projet: document.getElementById('projet').value,
+	        Nom: document.getElementById('nom').value,
+	        Prenom: document.getElementById('prenom').value,
+	        Email: document.getElementById('email').value + '@aphp.fr',
+	        Site: document.getElementById('site').value,
+	        Service: document.getElementById('service').value
+	    };
+	
+	    try {
+	        const response = await fetch('/api/inscription', {
+	            method: 'POST',
+	            headers: {
+	                'Content-Type': 'application/json',
+	                'Accept': 'application/json'
+	            },
+	            body: JSON.stringify(formData)
+	        });
+	
+	        // Vérifier si la réponse est du JSON
+	        const contentType = response.headers.get('content-type');
+	        if (contentType && contentType.includes('application/json')) {
+	            const data = await response.json();
+	            if (response.ok) {
+	                window.location.href = 'confirmation.html';
+	            } else {
+	                console.error('Erreur détaillée:', data);
+	                alert('Erreur: ' + (data.message || 'Une erreur est survenue lors de l\'inscription'));
+	            }
+	        } else {
+	            throw new Error('Réponse invalide du serveur');
+	        }
+	    } catch (error) {
+	        console.error('Erreur complète:', error);
+	        alert('Erreur de connexion: Veuillez réessayer plus tard');
+	    }
 	}
 
 	function validateForm() {
