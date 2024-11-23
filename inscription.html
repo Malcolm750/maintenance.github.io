@@ -89,27 +89,27 @@
     </footer>
 	<script>
 	document.addEventListener('DOMContentLoaded', function() {
-		// Récupération du projet depuis l'URL
-		const urlParams = new URLSearchParams(window.location.search);
-		const projetNom = urlParams.get('projet');
-		if (projetNom) {
-			document.getElementById('projet').value = decodeURIComponent(projetNom);
-		}
-
-		// Validation et nettoyage de l'email
-		const emailInput = document.getElementById('email');
-		emailInput.addEventListener('input', function(e) {
-			if (e.target.value.includes('@')) {
-				// Récupère uniquement la partie avant le @
-				e.target.value = e.target.value.split('@')[0];
-				alert("Le suffixe @aphp.fr sera ajouté automatiquement.");
-			}
-		});
-
-		// Ajout de la validation sur le formulaire
-		document.getElementById('inscriptionForm').addEventListener('submit', submitForm);
+	    // Récupération du projet depuis l'URL
+	    const urlParams = new URLSearchParams(window.location.search);
+	    const projetNom = urlParams.get('projet');
+	    if (projetNom) {
+	        document.getElementById('projet').value = decodeURIComponent(projetNom);
+	    }
+	
+	    // Validation et nettoyage de l'email
+	    const emailInput = document.getElementById('email');
+	    emailInput.addEventListener('input', function(e) {
+	        if (e.target.value.includes('@')) {
+	            // Récupère uniquement la partie avant le @
+	            e.target.value = e.target.value.split('@')[0];
+	            alert("Le suffixe @aphp.fr sera ajouté automatiquement.");
+	        }
+	    });
+	
+	    // Ajout de la validation sur le formulaire
+	    document.getElementById('inscriptionForm').addEventListener('submit', submitForm);
 	});
-
+	
 	async function submitForm(event) {
 	    event.preventDefault();
 	    
@@ -132,8 +132,10 @@
 	            method: 'POST',
 	            headers: {
 	                'Content-Type': 'application/json',
-	                'Accept': 'application/json'
+	                'Accept': 'application/json',
+	                'Origin': 'https://malcolm750.github.io'
 	            },
+	            credentials: 'include',
 	            body: JSON.stringify(formData)
 	        });
 	
@@ -148,6 +150,7 @@
 	                alert('Erreur: ' + (data.message || 'Une erreur est survenue lors de l\'inscription'));
 	            }
 	        } else {
+	            console.error('Réponse non-JSON reçue:', await response.text());
 	            throw new Error('Réponse invalide du serveur');
 	        }
 	    } catch (error) {
@@ -155,33 +158,33 @@
 	        alert('Erreur de connexion: Veuillez réessayer plus tard');
 	    }
 	}
-
+	
 	function validateForm() {
-		const requiredFields = ['projet', 'nom', 'prenom', 'email', 'site', 'service'];
-		let isValid = true;
-
-		requiredFields.forEach(field => {
-			const element = document.getElementById(field);
-			const errorDiv = element.nextElementSibling;
-			
-			if (!element.value.trim()) {
-				element.classList.add('is-invalid');
-				if (!errorDiv || !errorDiv.classList.contains('invalid-feedback')) {
-					const div = document.createElement('div');
-					div.className = 'invalid-feedback';
-					div.textContent = 'Ce champ est requis';
-					element.parentNode.insertBefore(div, element.nextSibling);
-				}
-				isValid = false;
-			} else {
-				element.classList.remove('is-invalid');
-				if (errorDiv && errorDiv.classList.contains('invalid-feedback')) {
-					errorDiv.remove();
-				}
-			}
-		});
-
-		return isValid;
+	    const requiredFields = ['projet', 'nom', 'prenom', 'email', 'site', 'service'];
+	    let isValid = true;
+	
+	    requiredFields.forEach(field => {
+	        const element = document.getElementById(field);
+	        const errorDiv = element.nextElementSibling;
+	        
+	        if (!element.value.trim()) {
+	            element.classList.add('is-invalid');
+	            if (!errorDiv || !errorDiv.classList.contains('invalid-feedback')) {
+	                const div = document.createElement('div');
+	                div.className = 'invalid-feedback';
+	                div.textContent = 'Ce champ est requis';
+	                element.parentNode.insertBefore(div, element.nextSibling);
+	            }
+	            isValid = false;
+	        } else {
+	            element.classList.remove('is-invalid');
+	            if (errorDiv && errorDiv.classList.contains('invalid-feedback')) {
+	                errorDiv.remove();
+	            }
+	        }
+	    });
+	
+	    return isValid;
 	}
     </script>
 </body>
