@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription au Projet - GHU</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="css/inscription.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <img src="images/agir.png" alt="Logo Agir Ensemble" class="header-logo">
+            <p class="subtitle">Ensemble, donnons vie à nos projets</p>
+        </div>
+
+        <div class="form-container">
+            <div class="project-header">
+                <h2 class="text-center">Je m'inscris au projet</h2>
+            </div>
+
+			<!-- Modification du formulaire -->
+			<form class="inscription-form" id="inscriptionForm" onsubmit="submitForm(event)">
+				<div class="form-group">
+					<label for="projet">Projet</label>
+					<input type="text" id="projet" class="form-control" value="Aucun" readonly>
+				</div>
+
+				<div class="form-group">
+					<label for="nom">Nom</label>
+					<input type="text" id="nom" class="form-control" required>
+				</div>
+
+				<div class="form-group">
+					<label for="prenom">Prénom</label>
+					<input type="text" id="prenom" class="form-control" required>
+				</div>
+
+				<div class="form-group">
+					<label for="email">Email professionnel</label>
+					<div class="email-input-group">
+						<input type="text" id="email" class="form-control email-prefix" required>
+						<span class="email-suffix">@aphp.fr</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="site">Site hospitalier</label>
+					<select id="site" class="form-control" required>
+						<option value="" disabled selected>Sélectionnez votre site</option>
+						<option value="cochin">Hôpital Cochin</option>
+						<option value="necker">Hôpital Necker</option>
+						<option value="pompidou">Hôpital Européen Georges Pompidou</option>
+						<option value="broca">Hôpital Broca</option>
+						<option value="hotel-dieu">Hôtel-Dieu</option>
+						<option value="corentin">Hôpital Corentin Celton</option>
+						<option value="vaugirard">Hôpital Vaugirard</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="service">Service</label>
+					<select id="service" class="form-control" required>
+						<option value="" disabled selected>Sélectionnez votre service</option>
+						<option value="technique">Service Technique</option>
+						<option value="securite">Sécurité Incendie</option>
+					</select>
+				</div>
+
+				<div class="form-actions">
+					<a href="index.html" class="btn btn-secondary">
+						<i class="fas fa-arrow-left me-2"></i>Retour
+					</a>
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-check me-2"></i>Valider l'inscription
+					</button>
+				</div>
+			</form>
+		</div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2024 GHU AP-HP.Centre - Université Paris Cité - Direction des Services Techniques</p>
+            </div>
+        </div>
+    </footer>
+	<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Récupération du projet depuis l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const projetNom = urlParams.get('projet');
+        if (projetNom) {
+            document.getElementById('projet').value = decodeURIComponent(projetNom);
+        }
+
+        // Validation de l'email
+        const emailInput = document.getElementById('email');
+        emailInput.addEventListener('input', function(e) {
+            if (e.target.value.includes('@')) {
+                e.target.value = e.target.value.replace('@', '');
+                alert("Veuillez ne pas inclure le '@' dans votre adresse. Le suffixe @aphp.fr sera ajouté automatiquement.");
+            }
+        });
+    });
+
+    async function submitForm(event) {
+        event.preventDefault();
+        
+        const formData = {
+            Projet: document.getElementById('projet').value,
+            Nom: document.getElementById('nom').value,
+            Prenom: document.getElementById('prenom').value,
+            Email: document.getElementById('email').value + '@aphp.fr',
+            Site: document.getElementById('site').value,
+            Service: document.getElementById('service').value
+        };
+
+        try {
+            const response = await fetch('/api/inscription', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                window.location.href = 'confirmation.html';
+            } else {
+                const error = await response.json();
+                alert(error.message || 'Une erreur est survenue lors de l\'inscription');
+            }
+        } catch (error) {
+            console.error('Erreur:', error);
+            alert('Une erreur est survenue lors de l\'inscription');
+        }
+    }
+
+    // Validation des champs requis
+    function validateForm() {
+        const requiredFields = ['projet', 'nom', 'prenom', 'email', 'site', 'service'];
+        let isValid = true;
+
+        requiredFields.forEach(field => {
+            const element = document.getElementById(field);
+            if (!element.value) {
+                element.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                element.classList.remove('is-invalid');
+            }
+        });
+
+        return isValid;
+    }
+    </script>
+</body>
+</html>
