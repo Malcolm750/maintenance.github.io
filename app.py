@@ -69,11 +69,11 @@ def submit_inscription():
         print("API URL:", NOCODB_API_URL)
         print("Table ID:", NOCODB_TABLE_ID)
 
-         url1 = f"{NOCODB_API_URL}/api/v1/db/data/noco/{NOCODB_TABLE_ID}/Inscriptions"
-        print("URL complète:", url1)
+         url = f"{NOCODB_API_URL}/api/v1/db/data/noco/{NOCODB_TABLE_ID}/Inscriptions"
+        print("URL complète:", url)
         
-        url = f"{NOCODB_API_URL}/api/v2/tables/{NOCODB_TABLE_ID}/records"
-         print("URL complète:", url)
+        #url = f"{NOCODB_API_URL}/api/v2/tables/{NOCODB_TABLE_ID}/records"
+         #print("URL complète:", url)
 
         # Log des données envoyées
         print("Headers:", headers)
