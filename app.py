@@ -65,8 +65,14 @@ def submit_inscription():
             headers=headers,
             json=data
         )
-        return jsonify(response.json())
+            if response.ok:
+                return jsonify({"success": True})
+            else:
+                print("Erreur NocoDB:", response.text)  # Pour le debugging
+                return jsonify({"error": "Erreur lors de l'enregistrement"}), 500
+                
     except Exception as e:
+        print("Exception:", str(e))  # Pour le debugging
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
