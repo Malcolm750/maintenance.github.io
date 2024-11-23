@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask_cors import CORS
 import os
 import requests
 
@@ -6,6 +7,9 @@ app = Flask(__name__,
     static_folder='.',  
     template_folder='.'  
 )
+
+# Activation de CORS pour permettre les requêtes cross-origin
+CORS(app)
 
 # Configuration NocoDB
 NOCODB_API_URL = os.environ.get('NOCODB_API_URL')
