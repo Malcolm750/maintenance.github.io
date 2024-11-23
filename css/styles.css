@@ -1,0 +1,322 @@
+body {
+    background: #f8f9fa;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Header Styles */
+.page-header {
+    text-align: center;
+    padding: 20px 20px 30px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: #1e293b;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.4;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+/* Container Styles */
+.container {
+    max-width: 1400px;
+    padding: 40px 20px;
+}
+
+/* Card Styles */
+.team-card {
+    background: white;
+    border-radius: 16px;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #edf2f7;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+}
+
+.team-header {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.team-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.team-card:hover .team-header::before {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.team-header span {
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    padding: 0 10px;
+}
+
+.team-card:hover .team-header span {
+    transform: translateY(-40px);
+}
+
+.header-description {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    padding: 0 20px;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: normal;
+    z-index: 2;
+    transition: all 0.3s ease;
+    opacity: 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.team-card:hover .header-description {
+    bottom: 40px;
+    opacity: 1;
+}
+
+.team-footer {
+    height: 30%;
+    background: white;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.team-stats {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.btn-join {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;  /* Empêche le soulignement */
+    display: inline-flex;   /* Garde l'icône et le texte alignés */
+    align-items: center;    /* Centre verticalement l'icône et le texte */
+}
+
+.btn-join:hover {
+    background: #1d4ed8;
+    transform: scale(1.05);
+    color: white;          /* Garde le texte blanc au survol */
+    text-decoration: none; /* Empêche le soulignement au survol */
+}
+
+.btn-join:active, 
+.btn-join:focus {
+    color: white;          /* Garde le texte blanc lors du clic/focus */
+    text-decoration: none; /* Empêche le soulignement lors du clic/focus */
+}
+
+/* Project Background Images */
+.project-1 { background-image: url('../images/magasin.jpg'); }
+.project-2 { background-image: url('../images/maintenance.jpg'); }
+.project-3 { background-image: url('../images/securite.jpg'); }
+.project-4 { background-image: url('../images/sanitaire.jpg'); }
+.project-5 { background-image: url('../images/signaletique.jpg'); }
+.project-6 { background-image: url('../images/chambre.jpg'); }
+.project-7 { background-image: url('../images/gtb.jpg'); }
+.project-8 { background-image: url('../images/drone.jpg'); }
+
+/* Footer Styles */
+.footer {
+    margin-top: 20px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    background-color: white;
+}
+
+.copyright {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Media Queries */
+@media (max-width: 1400px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .team-card {
+        height: 260px;
+    }
+    
+    .team-header {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .col-md-3 {
+        width: 33.333%;
+    }
+    
+    .team-card {
+        height: 240px;
+    }
+    
+    .team-header {
+        font-size: 1.2rem;
+    }
+    
+    .header-description {
+        font-size: 0.85rem;
+    }
+
+    .subtitle {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        padding: 15px 20px 25px;
+    }
+
+    .header-logo {
+        width: 120px;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .col-md-3 {
+        width: 50%;
+    }
+    
+    .team-card {
+        height: 220px;
+    }
+    
+    .team-header {
+        font-size: 1.1rem;
+        padding: 15px 10px;
+    }
+    
+    .header-description {
+        font-size: 0.8rem;
+        bottom: 30px;
+    }
+    
+    .team-footer {
+        padding: 10px 15px;
+    }
+    
+    .btn-join {
+        padding: 6px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    .page-header {
+        padding: 10px 15px 20px;
+    }
+
+    .header-logo {
+        width: 100px;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .col-md-3 {
+        width: 100%;
+    }
+    
+    .team-card {
+        height: 200px;
+        margin-bottom: 15px;
+    }
+    
+    .team-header {
+        font-size: 1rem;
+        padding: 10px;
+    }
+    
+    .header-description {
+        font-size: 0.75rem;
+        bottom: 25px;
+    }
+    
+    .team-card:hover .team-header span {
+        transform: translateY(-30px);
+    }
+
+    .footer {
+        margin-top: 10px;
+        padding: 15px 0;
+    }
+    
+    .copyright {
+        font-size: 0.8rem;
+    }
+}
+
+/* Fix pour le container du footer */
+.footer .container {
+    padding-top: 0;
+    padding-bottom: 0;
+}

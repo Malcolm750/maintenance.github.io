@@ -1,0 +1,297 @@
+body {
+    background: #f8f9fa;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Header Styles */
+.page-header {
+    text-align: center;
+    padding: 20px 20px 30px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: #1e293b;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.4;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+/* Container Styles */
+.container {
+    max-width: 800px;
+    padding: 40px 20px;
+}
+
+/* Confirmation Container */
+.confirmation-container {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.confirmation-icon {
+    font-size: 4rem;
+    color: #22c55e;
+    margin-bottom: 20px;
+}
+
+.confirmation-container h1 {
+    color: #1e293b;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.confirmation-message {
+    color: #64748b;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Next Steps Section */
+.next-steps {
+    text-align: left;
+    margin: 30px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+}
+
+.next-steps h2 {
+    color: #1e293b;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.next-steps ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.next-steps li {
+    color: #64748b;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.next-steps li i {
+    color: #2563eb;
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+/* Action Buttons */
+.action-buttons {
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* Easter Egg Styles - AJOUTEZ ICI */
+.easter-egg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.easter-egg.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.easter-egg-content {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    position: relative;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+    max-width: 400px;
+    margin: 20px;
+}
+
+.easter-egg.show .easter-egg-content {
+    transform: scale(1);
+}
+
+.egg-icon {
+    font-size: 3rem;
+    color: #2563eb;
+    margin-bottom: 20px;
+    animation: bounce 1s infinite;
+}
+
+.egg-message {
+    font-size: 1.2rem;
+    color: #1e293b;
+    font-weight: 600;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+.btn-close-egg {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.btn-close-egg:hover {
+    color: #1e293b;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Style pour rendre le logo cliquable */
+.header-logo {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.header-logo:active {
+    transform: scale(0.95);
+}
+
+
+/* Footer Styles */
+.footer {
+    margin-top: 20px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    background-color: white;
+}
+
+.copyright {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    .header-logo {
+        width: 120px;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .confirmation-container {
+        padding: 30px 20px;
+    }
+
+    .confirmation-icon {
+        font-size: 3rem;
+    }
+
+    .confirmation-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .confirmation-message {
+        font-size: 1rem;
+    }
+
+    .next-steps {
+        padding: 15px;
+    }
+
+    .next-steps li {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-logo {
+        width: 100px;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .confirmation-container h1 {
+        font-size: 1.6rem;
+    }
+
+    .next-steps h2 {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Fix pour le container du footer */
+.footer .container {
+    padding-top: 0;
+    padding-bottom: 0;
+}

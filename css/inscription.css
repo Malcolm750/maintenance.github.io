@@ -1,0 +1,259 @@
+body {
+    background: #f8f9fa;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Header Styles */
+.page-header {
+    text-align: center;
+    padding: 20px 20px 30px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: #1e293b;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.4;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+/* Container Styles */
+.container {
+    max-width: 800px;
+    padding: 40px 20px;
+}
+
+/* Form Container */
+.form-container {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.project-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.project-header h2 {
+    color: #1e293b;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.project-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2563eb;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.project-description {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #1e293b;
+    font-weight: 500;
+}
+
+.form-control {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 15px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    outline: none;
+}
+
+/* Readonly input styles */
+input[readonly] {
+    background-color: #f8f9fa;
+    cursor: not-allowed;
+}
+
+/* Email input group styles */
+.email-input-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.email-prefix {
+    flex: 1;
+}
+
+.email-suffix {
+    color: #64748b;
+    font-size: 0.95rem;
+    padding: 10px 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    white-space: nowrap;
+}
+
+/* Select Styles */
+select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+/* Textarea Styles */
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Button Styles */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #f1f5f9;
+    color: #64748b;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+/* Footer Styles */
+.footer {
+    margin-top: 20px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    background-color: white;
+}
+
+.copyright {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    .header-logo {
+        width: 120px;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .form-container {
+        padding: 20px;
+    }
+
+    .project-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-logo {
+        width: 100px;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .project-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .email-input-group {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .email-suffix {
+        width: 100%;
+        text-align: center;
+    }
+
+    .form-container {
+        padding: 15px;
+    }
+}
+
+/* Fix pour le container du footer */
+.footer .container {
+    padding-top: 0;
+    padding-bottom: 0;
+}
