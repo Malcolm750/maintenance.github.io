@@ -61,9 +61,16 @@ def get_stats():
         print("Erreur dans /api/stats:", str(e))  # Log pour debugging
         return jsonify({'error': str(e)}), 500
 
-@app.route('/api/inscription', methods=['POST'])
+@app.route('/api/inscription', methods=['POST', 'OPTIONS'])
 def submit_inscription():
     try:
+        if request.method == 'OPTIONS':
+            # Répondre aux pré-requêtes CORS
+            response = app.make_response()
+            response.headers['Access-Control-Allow-Origin'] = 'https://malcolm750.github.io'
+            response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
+            response.headers['Access-Control-Allow-Methods'] = 'POST,OPTIONS'
+            return response, 200
         print("Données reçues:", request.json)
         data = request.json
 
